@@ -1,0 +1,73 @@
+<template name="rp_comments">
+    <div class="chat-view">
+        <div>
+            <small class="pull-right text-muted">Last message:  Mon Jan 26 2015 - 18:39:23</small>
+            <h4>Comments/Questions</h4>
+        </div>
+        <div>
+            <a href="#" class="btn-primary btn btn-xs rp_add_comment" data-toggle="modal" data-target="#rp_comment_modal">Add Comment</a>
+        </div>
+        <br>
+        {{#if comments.length}}
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="chat-discussion">
+                        {{#each comments}}
+                        <div class="chat-message left">
+                            {{> UI.contentBlock}}
+                            {{>rp_comment_item}}
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</template>
+
+<template name="rp_comment_item">
+
+        <div class="message">
+            <a class='message-author' href='#'>{{>rp_comment_identity owner=owner}}</a>
+            <span class="message-date"> {{tm_cal createdAt}} </span>
+               <span class="message-content">
+                   {{message}}
+               </span>
+            <div>
+                {{#if rp_comment_canEdit createdBy}}
+                    <a href="#" class="btn btn-white btn-xs rp_comment_edit " data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-pencil"></i> Edit</a>
+                {{else}}
+                    <a href="#" class="btn btn-white btn-xs rp_reply_comment " data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-reply"></i> Reply</a>
+                {{/if}}
+            </div>
+            {{#if replies.length}}
+                <br>
+                {{#each replies}}
+                    {{>rp_reply_item}}
+                {{/each}}
+            {{/if}}
+
+        </div>
+
+</template>
+
+<template name="rp_comment_identity">
+    {{#with owner}}
+        {{rp_comment_identity this}}
+    {{/with}}
+</template>
+
+<template name="rp_reply_item">
+    <div class="well ">
+        <a class="message-author" href="#"> {{>rp_comment_identity owner=owner}} </a><span class="message-date"> {{tm_cal createdAt}} </span>
+        <div>
+            {{message}}
+        </div>
+        {{#if rp_comment_canEdit createdBy}}
+          <a href="#" class="btn btn-primary btn-xs rp_comment_edit_2" data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-pencil"></i> Edit</a>
+            {{else}}
+          <a href="#" class="btn btn-primary btn-xs rp_reply_comment_2" data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-reply"></i> Reply</a>
+        {{/if}}
+    </div>
+</template>
+

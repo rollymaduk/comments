@@ -1,0 +1,27 @@
+<template name="rp_comment_control">
+    {{#unless this.scope}}
+    {{>quickForm type='normal' id='rp_comment_form' doc=this schema=rp_comment_schema buttonClasses="pull-right btn-primary btn btn-xs"
+        buttonContent="send"  }}
+        {{else}}
+    {{>quickForm type='normal' id='rp_comment_form' schema=rp_comment_reply  doc=this  buttonClasses="pull-right btn-primary btn btn-xs"
+    buttonContent="send"  }}
+    {{/unless}}
+</template>
+
+<template name="rp_comment_modal">
+    <div class="modal inmodal"  id="rp_comment_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-body " >
+                    <button type="button" class="close pull-right" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+
+                    <div id="rp_comment_content">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
