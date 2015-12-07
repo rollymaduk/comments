@@ -1,11 +1,6 @@
 <template name="rp_comment_control">
-    {{#unless this.scope}}
-    {{>quickForm type='normal' id='rp_comment_form' doc=this schema=rp_comment_schema buttonClasses="pull-right btn-primary btn btn-xs"
+    {{>quickForm type='normal' id='rp_comment_form' doc=this schema=this.schema buttonClasses="pull-right btn-primary btn btn-xs"
         buttonContent="send"  }}
-        {{else}}
-    {{>quickForm type='normal' id='rp_comment_form' schema=rp_comment_reply  doc=this  buttonClasses="pull-right btn-primary btn btn-xs"
-    buttonContent="send"  }}
-    {{/unless}}
 </template>
 
 <template name="rp_comment_modal">

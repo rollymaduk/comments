@@ -48,7 +48,6 @@ class Rp_Comment_Server extends Rp_Comment_Base
             modifier={}
             modifier["replies.#{index}"]=message
             Rp_Comments.update(docId,{$set:modifier})
-
           doc=Rp_Comments.findOne(docId)
           doc.replies.sort((a,b)->new Date(b.updatedAt) - new Date(a.updatedAt))
           that.replyChanged.call null,doc.replies[0],doc._id

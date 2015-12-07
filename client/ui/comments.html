@@ -1,16 +1,17 @@
 <template name="rp_comments">
     <div class="feed-activity-list">
             <h4>Comments/Questions</h4>
-
-            <div>
-                <a href="#" class="btn-primary btn btn-xs rp_add_comment" data-toggle="modal" data-target="#rp_comment_modal">Add Comment</a>
-            </div>
+            {{#if options.canAddComment}}
+                <div>
+                    <a href="#" class="btn-primary btn btn-xs rp_add_comment" data-toggle="modal" data-target="#rp_comment_modal">Add Comment</a>
+                </div>
             <br>
+            {{/if}}
             {{#if comments.length}}
                   {{#each comments}}
-                  <div class="feed-element">
+                  <div class="feed-element" id="{{docId}}">
                       {{> UI.contentBlock}}
-                     {{>rp_comment_item}}
+                     {{>rp_comment_item }}
                   </div>
                   {{/each}}
             {{/if}}
@@ -27,15 +28,19 @@
             <br>
             <div>
                 {{#if rp_comment_canEdit createdBy}}
-                    <a href="#" class="btn btn-white btn-xs rp_comment_edit " data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-pencil"></i> Edit</a>
-                {{else}}
-                    <a href="#" class="btn btn-white btn-xs rp_reply_comment " data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-reply"></i> Reply</a>
+                        {{#if canEditComment}}
+                        <a href="#" class="btn btn-white btn-xs rp_edit_comment " data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-pencil"></i> Edit</a>
+                        {{/if}}
+                    {{else}}
+                        {{#if canReplyComment}}
+                            <a href="#" class="btn btn-white btn-xs rp_add_reply " data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-reply"></i> Reply</a>
+                        {{/if}}
                 {{/if}}
             </div>
             {{#if replies.length}}
                 <br>
                 {{#each replies}}
-                    {{>rp_reply_item}}
+                    {{>rp_reply_item }}
                 {{/each}}
             {{/if}}
 
@@ -52,7 +57,7 @@
 </template>
 
 <template name="rp_reply_item">
-    <div class="well ">
+    <div class="well " id="{{refId}}-{{rp_comment_timestamp updatedAt}}">
         <span class="message-date pull-right"> {{tm_cal createdAt}} </span>
         <strong><a class="message-author" href="#"> {{>rp_comment_identity owner=owner}} </a></strong>
 
@@ -61,9 +66,13 @@
         </div>
         <br>
         {{#if rp_comment_canEdit createdBy}}
-          <a href="#" class="btn btn-primary btn-xs rp_comment_edit_2" data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-pencil"></i> Edit</a>
+
+                     <a href="#" class="btn btn-primary btn-xs rp_edit_reply" data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-pencil"></i> Edit</a>
+
             {{else}}
-          <a href="#" class="btn btn-primary btn-xs rp_reply_comment_2" data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-reply"></i> Reply</a>
+
+                    <a href="#" class="btn btn-primary btn-xs rp_reply_reply" data-toggle="modal" data-target="#rp_comment_modal"><i class="fa fa-reply"></i> Reply</a>
+
         {{/if}}
     </div>
 </template>

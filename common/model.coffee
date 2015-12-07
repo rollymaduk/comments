@@ -10,6 +10,11 @@ Rp_Comment_Model.Reply=new SimpleSchema({
     autoform:
       type:"hidden"
       label:false
+  refId:
+    type:String
+    autoform:
+      type:"hidden"
+      label:false
   createdBy:
     type:String
     autoform:
@@ -77,7 +82,6 @@ Rp_Comment_Model.Comment=new SimpleSchema({
     autoform:
       label:false
       type:"hidden"
-
 })
 
 

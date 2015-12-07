@@ -23,6 +23,7 @@ class Rp_Comment_Client extends Rp_Comment_Base
 
 
 
+
   getNewComment:()->
     {docId:_docId,collection:_collection,parent:_parent}
 

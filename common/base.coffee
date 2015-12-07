@@ -4,12 +4,12 @@ class @Rp_Comment_Base
   getComments:(qry={},modifier={})->
     Rp_Comments.find(qry,modifier).fetch()
 
-  createNewReply:(doc,docId,replyIndex,callback)->
+  createNewReply:(doc,replyIndex,callback)->
     if callback
-      Meteor.call 'rp_add_reply',doc,docId,replyIndex,(err,res)->
+      Meteor.call 'rp_add_reply',doc,doc.refId,replyIndex,(err,res)->
         callback.call null,err,res
     else
-      Meteor.call 'rp_add_reply',doc,docId,replyIndex
+      Meteor.call 'rp_add_reply',doc,doc.refId,replyIndex
 
   createNewComment:(doc,audienceRef,docId,callback)->
     if callback
