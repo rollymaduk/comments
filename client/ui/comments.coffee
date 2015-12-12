@@ -28,7 +28,7 @@ Template.rp_comment_item.events
       data.schema="Rp_Comment_Model.Reply"
       data.audience=[temp.data.createdBy]
     else
-      data=temp.data
+      data=_.omit(temp.data,'replies')
       data.schema="Rp_Comment_Model.Comment"
 
     Rp_Comment.renderInput(Template.rp_comment_control,data,'#rp_comment_content')
@@ -60,6 +60,7 @@ Template.rp_comments.rendered=->
       onError:(formType,err)->console.log err
 
       onSubmit:(ins,mod,curr)->
+        console.log curr
         if curr.schema is "Rp_Comment_Model.Reply"
           ###ins.audience=[curr.createdBy]###
           console.log ins
