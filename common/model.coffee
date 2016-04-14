@@ -43,6 +43,7 @@ Rp_Comment_Model.Reply=new SimpleSchema({
     denyInsert:true
     optional:true
 })
+
 Rp_Comment_Model.Comment=new SimpleSchema({
   message:
     type:String
@@ -85,8 +86,7 @@ Rp_Comment_Model.Comment=new SimpleSchema({
 })
 
 
-
-@Rp_Comments=new Meteor.Collection('rp_comments',transform:(doc)->
+@Rp_Comments=new Meteor.Collection("#{Meteor.settings.public.dbPrefix}rp_comments",transform:(doc)->
   doc.owner=Meteor.users.findOne(doc.createdBy)
   _.each(doc.replies,(val,index)->
     val.index=index

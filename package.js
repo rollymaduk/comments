@@ -21,7 +21,7 @@ Package.onUse(function(api) {
   api.use('gfk:server-messages');
   api.use('zimme:collection-timestampable');
   api.export('Rp_Comment');
-  api.addFiles(['common/base.coffee','common/model.coffee']);
+  api.addFiles(['common/base.coffee','common/model.coffee'],['client','server']);
   api.addFiles(['client/ui/comments-input.html','client/ui/comments.html'],'client');
   api.addFiles(['client/ui/helper.coffee','client/ui/comments.coffee'],'client');
   api.addFiles(['client/comments.coffee'],'client');
@@ -31,5 +31,5 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('tinytest');
   api.use('rollypolly:comments');
-  api.addFiles('comments-tests.js');
+  api.addFiles('comments-tests.js',['client','server']);
 });

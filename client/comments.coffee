@@ -36,14 +36,15 @@ class Rp_Comment_Client extends Rp_Comment_Base
     _controlView=Blaze.renderWithData(template,data,$(selector)[0])
 
 
-  setUp:(docId,collection,parent,modalTemplate)->
-    check(docId,String)
-    check(collection,String)
-    _parent=parent or docId
-    _docId=docId
-    _collection=collection
-    @setIdentity(['emails.0.address'])
-    @setFilter({docId:_docId})
+  setUp:(docId,collection,parent)->
+    if _.isString(docId) and _.isString(collection)
+      check(docId,String)
+      check(collection,String)
+      _parent=parent or docId
+      _docId=docId
+      _collection=collection
+      @setIdentity(['emails.0.address'])
+      @setFilter({docId:_docId})
 
 
 

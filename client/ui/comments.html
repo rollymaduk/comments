@@ -1,4 +1,5 @@
 <template name="rp_comments">
+    {{#if Template.subscriptionsReady}}
     <div class="feed-activity-list">
             <h4>Comments/Questions</h4>
             {{#if options.canAddComment}}
@@ -16,6 +17,7 @@
                   {{/each}}
             {{/if}}
     </div>
+     {{/if}}
 </template>
 
 <template name="rp_comment_item">
